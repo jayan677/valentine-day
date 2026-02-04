@@ -1,51 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Valentine 💖</title>
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    body { margin: 0; font-family: "Poppins", sans-serif; background: linear-gradient(to right, #ffdde1, #ee9ca7); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 30px; }
-    .card { max-width: 900px; background: rgba(255, 255, 255, 0.88); padding: 50px; border-radius: 30px; box-shadow: 0 25px 70px rgba(0,0,0,0.25); text-align: center; }
-    h1 { font-family: "Playfair Display", serif; font-size: 42px; color: #b4004e; margin-bottom: 10px; }
-    p { font-size: 18px; color: #444; line-height: 1.7; margin-bottom: 35px; }
-    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 18px; }
-    .gallery img { width: 100%; height: 240px; object-fit: cover; border-radius: 20px; }
-    .btn { margin-top: 40px; padding: 14px 34px; border: none; border-radius: 40px; background: #ff4d6d; color: white; cursor: pointer; }
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .card {
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.88);
+      padding: 50px;
+      border-radius: 30px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+      text-align: center;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(25px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 42px;
+      color: #b4004e;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      font-family: "Playfair Display", serif;
+      color: #b4004e;
+      margin-bottom: 15px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .gallery-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .caption {
+      margin-top: 6px;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+    }
+
+    .btn {
+      margin-top: 40px;
+      padding: 14px 34px;
+      border: none;
+      border-radius: 40px;
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 15px 30px rgba(255,77,109,0.5);
+      transition: 0.25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
   </style>
 </head>
+
 <body>
 
-  <audio id="romanticAudio" loop playsinline>
-    <source src="audio/love-song.mp3" type="audio/mpeg">
-  </audio>
-
   <div class="card">
+
     <h1>💖 My Valentine 💖</h1>
+
     <p>
-      MY baby Aarya,<br><br>
-      You honestly don’t know how much this means to me.
-      The moment you came into my life,something changed in the most beautiful way.
-      Everything feels softer,warmer,and more meaningful because you are here.
-      <br><br>
-      I don’t just want this Valentine’s Day with you I want every Valentine with you 💖✨
+      MY baby aarya,<br><br>
+      
+  You honestly don’t know how much this means to me.
+  The moment you came into my life, something changed in the most beautiful way.
+  Everything feels softer, warmer, and more meaningful because you are here.<br><br>
+
+  Being with you makes me feel happy in a way I can’t even explain properly.
+  It’s not just the big moments it’s the small things 
+  the way you care, the way you understand, the way you make everything feel okay.<br><br>
+
+  And what makes you even more special to me is that even when you are tired,
+  even when you feel sad or drained, you still somehow make sure that my smile never fades.
+  That kind of love that kind of effort is rare, and I notice it more than you know.<br><br>
+
+  I feel so blessed to have you.
+  You are not just important to me 
+  you are genuinely one of the best parts of my life.
+  You make my days brighter, my heart calmer, and my world better just by being yourself.<br><br>
+
+  Thank you for existing, thank you for choosing me,
+  and thank you for being the person who makes love feel so real and so beautiful.<br><br>
+
+  I don’t just want this Valentine’s Day with you
+  I want every Valentine with you💖✨
     </p>
 
+    <h2>📸 Our Memories Together</h2>
+
     <div class="gallery">
-      <img src="images/pic1.jpg">
-      <img src="images/pic2.jpg">
-      <img src="images/pic3.jpg">
+      <div class="gallery-item">
+        <img src="images/pic1.jpg" alt="Memory 1">
+        <div class="caption">When you said smile and not act nonchalant 💕</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/pic2.jpg" alt="Memory 2">
+        <div class="caption">Definitely getting my ass beaten if i don't smile 😂</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/pic3.jpg" alt="Memory 3">
+        <div class="caption">The sweetest moment ✨</div>
+      </div>
+      <!-- Add more pictures like this -->
+      <!-- Example:
+      <div class="gallery-item">
+        <img src="images/pic4.jpg" alt="Memory 4">
+        <div class="caption">Our trip to the mountains 🏔️</div>
+      </div>
+      -->
     </div>
 
-    <button class="btn" onclick="window.location.href='index.html'">Back to the Question 💘</button>
+    <button class="btn" onclick="window.location.href='index.html'">
+      Back to the Question 💘
+    </button>
+
   </div>
 
-  <script>
-    const audio = document.getElementById('romanticAudio');
-    function playMusic() { audio.play(); }
-    window.addEventListener('touchstart', playMusic);
-    window.addEventListener('click', playMusic);
-  </script>
 </body>
 </html>
