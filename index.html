@@ -1,130 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Be My Valentine</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-    <style>
-        /* --- Page Setup --- */
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%);
-            overflow: hidden;
-            text-align: center;
-        }
-
-        /* --- The Card --- */
-        .card {
-            background: white;
-            padding: 40px;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-            z-index: 10;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            color: #d63384;
-            font-size: 28px;
-            margin-bottom: 30px;
-        }
-
-        /* --- Buttons --- */
-        .btn-wrap {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            height: 50px;
-            position: relative;
-        }
-
-        button {
-            padding: 12px 25px;
-            font-size: 16px;
-            font-weight: 600;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        #yes-btn {
-            background-color: #ff4d6d;
-            color: white;
-        }
-
-        #no-btn {
-            background-color: #f8f9fa;
-            color: #6c757d;
-            position: absolute;
-            left: 55%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be My Valentine 💘</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+    @keyframes gradient { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 50px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+    h2 { font-family: 'Playfair Display', serif; font-size: 32px; color: #b4004e; margin-bottom: 30px; }
+    .btn-container { position: relative; height: 60px; }
+    button { padding: 15px 35px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; position: absolute; }
+    #yes { left: 10%; background: #ff4d6d; color: white; }
+    #no { right: 10%; background: white; color: #888; }
+    .heart { position: absolute; bottom: -20px; animation: floatUp 6s linear forwards; }
+    @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+  </style>
 </head>
 <body>
 
-    <audio id="myMusic" loop playsinline>
-        <source src="audio/love-song.mp3" type="audio/mpeg">
-    </audio>
+  <audio id="bg-music" loop playsinline>
+    <source src="audio/love-song.mp3" type="audio/mpeg">
+  </audio>
 
-    <div class="card">
-        <div style="font-size: 50px; margin-bottom: 10px;">🐱</div>
-        <h1>Aarya, will you be my Valentine?</h1>
-        
-        <div class="btn-wrap">
-            <button id="yes-btn">Yes! 💖</button>
-            <button id="no-btn">No 🙈</button>
-        </div>
+  <div class="card">
+    <div style="font-size: 60px;">🐱❤️</div>
+    <h2>Dear Aarya,<br>will you be my Valentine?</h2>
+    <div class="btn-container">
+      <button id="yes">Yes 💖</button>
+      <button id="no">No 🙈</button>
     </div>
+  </div>
 
-    <script>
-        const music = document.getElementById('myMusic');
-        const yesBtn = document.getElementById('yes-btn');
-        const noBtn = document.getElementById('no-btn');
+  <script>
+    const music = document.getElementById('bg-music');
+    
+    // THE ONLY FIX: Unlocks music on first tap
+    function unlock() { 
+      music.play(); 
+      window.removeEventListener('click', unlock);
+      window.removeEventListener('touchstart', unlock);
+    }
+    window.addEventListener('click', unlock);
+    window.addEventListener('touchstart', unlock);
 
-        // --- iPhone Music Unlock ---
-        function handleInteraction() {
-            music.play();
-            window.removeEventListener('click', handleInteraction);
-            window.removeEventListener('touchstart', handleInteraction);
-        }
-        window.addEventListener('click', handleInteraction);
-        window.addEventListener('touchstart', handleInteraction);
+    document.getElementById('no').addEventListener('mouseover', function() {
+      this.style.left = Math.random() * 70 + '%';
+      this.style.top = Math.random() * 70 + '%';
+    });
 
-        // --- Running No Button ---
-        noBtn.addEventListener('mouseover', () => {
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-        });
+    document.getElementById('yes').addEventListener('click', () => {
+      confetti();
+      setTimeout(() => { window.location.href = 'yes.html'; }, 1000);
+    });
 
-        // --- Yes Button Click ---
-        yesBtn.addEventListener('click', () => {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-            setTimeout(() => {
-                window.location.href = 'yes.html';
-            }, 1000);
-        });
-    </script>
+    setInterval(() => {
+      const h = document.createElement('div');
+      h.className = 'heart'; h.innerHTML = '❤️';
+      h.style.left = Math.random() * 100 + 'vw';
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 6000);
+    }, 400);
+  </script>
 </body>
 </html>
