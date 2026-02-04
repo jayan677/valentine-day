@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Be My Valentine 💘</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
@@ -180,9 +178,8 @@
     <div class="hint">Some love stories don’t allow “no” ✨</div>
   </div>
 
-  <!-- Sounds -->
-  <audio id="hoverSound" src="https://assets.mixkit.co/sfx/preview/mixkit-cartoon-voice-laugh-343.mp3"></audio>
-  <audio id="yesSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
+  <audio id="hoverSound" src="https://assets.mixkit.co/sfx/preview/mixkit-cartoon-voice-laugh-343.mp3" preload="auto"></audio>
+  <audio id="yesSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
 
   <script>
     const noBtn = document.getElementById("no");
@@ -191,10 +188,23 @@
     const hoverSound = document.getElementById("hoverSound");
     const yesSound = document.getElementById("yesSound");
 
+    // MOBILE AUDIO UNLOCKER
+    // This allows audio to play on iPhones/Androids after the first touch
+    window.addEventListener('touchstart', function() {
+        hoverSound.play().then(() => {
+            hoverSound.pause();
+            hoverSound.currentTime = 0;
+        });
+        yesSound.play().then(() => {
+            yesSound.pause();
+            yesSound.currentTime = 0;
+        });
+    }, { once: true });
+
     /* NO button runs away */
     noBtn.addEventListener("mouseenter", () => {
       hoverSound.currentTime = 0;
-      hoverSound.play();
+      hoverSound.play().catch(e => console.log("Audio waiting for touch"));
 
       const cardRect = card.getBoundingClientRect();
       const btnRect = noBtn.getBoundingClientRect();
@@ -202,6 +212,19 @@
       const maxX = cardRect.width - btnRect.width - 10;
       const maxY = cardRect.height - btnRect.height - 10;
 
+      noBtn.style.left = Math.random() * maxX + "px";
+      noBtn.style.top = Math.random() * maxY + "px";
+    });
+
+    // Touch support for the "No" button so it moves on mobile too
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault(); 
+      hoverSound.currentTime = 0;
+      hoverSound.play();
+      const cardRect = card.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+      const maxX = cardRect.width - btnRect.width - 10;
+      const maxY = cardRect.height - btnRect.height - 10;
       noBtn.style.left = Math.random() * maxX + "px";
       noBtn.style.top = Math.random() * maxY + "px";
     });
